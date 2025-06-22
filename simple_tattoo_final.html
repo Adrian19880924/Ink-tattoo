@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Tattoo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #111;
+            color: #eee;
+        }
+        header {
+            background-color: #000;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1, .logo {
+            margin: 0;
+            font-size: 36px;
+            letter-spacing: 2px;
+            color: #e60073;
+        }
+        nav {
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #eee;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #e60073;
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 10px #000;
+        }
+        .hero h2 {
+            font-size: 48px;
+            text-align: center;
+        }
+        section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label, input, textarea {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        input, textarea {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #e60073;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        input[type="submit"]:hover {
+            background-color: #cc005f;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000;
+            color: #777;
+        }
+        .language-switcher {
+            margin-top: 10px;
+        }
+        .language-switcher button {
+            background: none;
+            border: 1px solid #e60073;
+            color: #e60073;
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .language-switcher button:hover {
+            background-color: #e60073;
+            color: #fff;
+        }
+    </style>
+    <script>
+        function switchLang(lang) {
+            const texts = {
+                ro: {
+                    title: "Simple Tattoo",
+                    hero: "Arta care rămâne pe viață",
+                    formTitle: "Programează o sesiune",
+                    name: "Nume complet:",
+                    email: "Email:",
+                    date: "Data dorită:",
+                    msg: "Descriere tatuaj:",
+                    submit: "Trimite programarea",
+                    gallery: "Galerie",
+                },
+                en: {
+                    title: "Simple Tattoo",
+                    hero: "Art that lasts a lifetime",
+                    formTitle: "Book a Session",
+                    name: "Full Name:",
+                    email: "Email:",
+                    date: "Preferred Date:",
+                    msg: "Tattoo Description:",
+                    submit: "Send Booking",
+                    gallery: "Gallery",
+                },
+                da: {
+                    title: "Simple Tattoo",
+                    hero: "Kunst der varer livet ud",
+                    formTitle: "Book en tid",
+                    name: "Fulde navn:",
+                    email: "Email:",
+                    date: "Ønsket dato:",
+                    msg: "Beskrivelse af tatovering:",
+                    submit: "Send booking",
+                    gallery: "Galleri",
+                }
+            };
+            const t = texts[lang];
+            document.title = t.title;
+            document.getElementById("heroText").textContent = t.hero;
+            document.getElementById("formTitle").textContent = t.formTitle;
+            document.getElementById("labelName").textContent = t.name;
+            document.getElementById("labelEmail").textContent = t.email;
+            document.getElementById("labelDate").textContent = t.date;
+            document.getElementById("labelMsg").textContent = t.msg;
+            document.getElementById("submitBtn").value = t.submit;
+            document.getElementById("galleryTitle").textContent = t.gallery;
+        }
+    </script>
+</head>
+<body onload="switchLang('ro')">
+
+<header>
+    <div class="logo">✒️ Simple Tattoo</div>
+    <div class="language-switcher">
+        <button onclick="switchLang('ro')">RO</button>
+        <button onclick="switchLang('en')">EN</button>
+        <button onclick="switchLang('da')">DA</button>
+    </div>
+</header>
+
+<nav>
+    <a href="#">Acasă</a>
+    <a href="#gallery">Galerie</a>
+    <a href="#">Despre</a>
+    <a href="#booking">Programări</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="hero">
+    <h2 id="heroText">Arta care rămâne pe viață</h2>
+</div>
+
+<section id="booking">
+    <h2 id="formTitle">Programează o sesiune</h2>
+    <form>
+        <label for="nume" id="labelName">Nume complet:</label>
+        <input type="text" id="nume" name="nume" required>
+
+        <label for="email" id="labelEmail">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="data" id="labelDate">Data dorită:</label>
+        <input type="date" id="data" name="data" required>
+
+        <label for="mesaj" id="labelMsg">Descriere tatuaj:</label>
+        <textarea id="mesaj" name="mesaj" rows="4" placeholder="Spune-ne ce vrei să-ți tatuezi..."></textarea>
+
+        <input type="submit" id="submitBtn" value="Trimite programarea">
+    </form>
+</section>
+
+<section id="gallery">
+    <h2 id="galleryTitle">Galerie</h2>
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1583321510706-b7cdbb67a0f1" alt="tattoo1">
+        <img src="https://images.unsplash.com/photo-1579586337278-3c0052a227ac" alt="tattoo2">
+        <img src="https://images.unsplash.com/photo-1579033461380-1ee2f80a7d63" alt="tattoo3">
+        <img src="https://images.unsplash.com/photo-1563389235917-499a6a2a8b91" alt="tattoo4">
+    </div>
+
+    <section id="contact" style="text-align:center; margin-top:40px;">
+        <h2>Contact</h2>
+        <p>Trimite-ne un mesaj direct pe WhatsApp:</p>
+        <a href="https://wa.me/4512345678" target="_blank" style="
+            display:inline-block;
+            background-color:#25D366;
+            color:white;
+            padding:10px 20px;
+            border-radius:5px;
+            text-decoration:none;
+            font-weight:bold;
+            margin-bottom:20px;
+        ">📲 WhatsApp</a>
+        <div style="margin-top:20px;">
+            <p>Ne găsești aici:</p>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2249.211211418221!2d11.136167316068617!3d55.94235388060379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464b20de3170c79d%3A0x4f7b1e3d5561c2f2!2sVideb%C3%A6k%2C%20Danemarca!5e0!3m2!1sro!2sdk!4v1700000000000" 
+                width="100%" 
+                height="300" 
+                style="border:0; border-radius:8px;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+    </section>
+
+    <footer>
+    &copy; 2025 Simple Tattoo. Toate drepturile rezervate.
+</footer>
+
+</body>
+</html>
